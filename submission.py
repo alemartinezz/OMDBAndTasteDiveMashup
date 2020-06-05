@@ -48,7 +48,6 @@ def get_movie_rating(title_info):
 
 def get_sorted_recommendations(list_movie_titles):
     related_titles = get_related_titles(list_movie_titles)
-    sorted_related_titles = sorted(related_titles, 
-    key = lambda movie_name: (get_movie_rating(get_movie_data(movie_name)), movie_name), reverse=True)
+    sorted_related_titles = sorted(related_titles, key = lambda movie_name: (get_movie_rating(get_movie_data(movie_name)), movie_name), reverse=True)
     return sorted_related_titles
  
