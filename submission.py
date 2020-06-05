@@ -22,13 +22,10 @@ def extract_movie_titles(related_movies):
 
 def get_related_titles(movie_names):
     related_movies_list = []
-
     for movie_name in movie_names:
         related_movies = get_movies_from_tastedive(movie_name)
         related_movie_names = extract_movie_titles(related_movies)
-
         related_movies_list = related_movies_list + [movie_name for movie_name in related_movie_names if related_movies_list.count(movie_name) == 0]
-
     return related_movies_list
 
 
