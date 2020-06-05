@@ -8,15 +8,13 @@ def get_movies_from_tastedive(movies):
     parameters["q"] = movies
     parameters["type"] = "movies"
     parameters["limit"] = 5
-    tastedive_response = requests_with_caching.get(baseurl,
-                                                   params=parameters)
+    tastedive_response = requests_with_caching.get(baseurl, params=parameters)
     related_movies = json.loads(tastedive_response.text)
     return related_movies
 
 
 def extract_movie_titles(related_movies):
-    related_movie_names = [x["Name"] for x in
-                           related_movies["Similar"]["Results"]]
+    related_movie_names = [x["Name"] for x in related_movies["Similar"]["Results"]]
     return related_movie_names
 
 
@@ -34,8 +32,7 @@ def get_movie_data(title):
     parameters = {}
     parameters["t"] = title
     parameters["r"] = "json"
-    title_info_response = requests_with_caching.get(baseurl,
-                                                   params=parameters)
+    title_info_response = requests_with_caching.get(baseurl, params=parameters)
     title_info = json.loads(title_info_response.text)
     return title_info
 
@@ -54,3 +51,4 @@ def get_sorted_recommendations(list_movie_titles):
     sorted_related_titles = sorted(related_titles, 
     key = lambda movie_name: (get_movie_rating(get_movie_data(movie_name)), movie_name), reverse=True)
     return sorted_related_titles
+ 
